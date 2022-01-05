@@ -1,17 +1,16 @@
-# cmd-shim
+# @xpack/cmd-shim
 
-The cmd-shim used in npm to create executable scripts on Windows,
+Fork of [cmd-shim](https://github.com/npm/cmd-shim), used
+by `xpm` to create executable scripts on Windows,
 since symlinks are not suitable for this purpose there.
 
 On Unix systems, you should use a symbolic link instead.
 
-[![Build Status](https://img.shields.io/travis/npm/cmd-shim/master.svg)](https://travis-ci.org/npm/cmd-shim)
-[![Dependency Status](https://img.shields.io/david/npm/cmd-shim.svg)](https://david-dm.org/npm/cmd-shim)
-[![npm version](https://img.shields.io/npm/v/cmd-shim.svg)](https://www.npmjs.com/package/cmd-shim)
+[![npm version](https://img.shields.io/npm/v/cmd-shim.svg)](https://www.npmjs.com/package/@xpack/cmd-shim)
 
 ## Installation
 
-```
+```console
 npm install cmd-shim
 ```
 
@@ -23,7 +22,7 @@ Create a cmd shim at `to` for the command line program at `from`.
 e.g.
 
 ```javascript
-var cmdShim = require('cmd-shim');
+var cmdShim = require('@xpack/cmd-shim');
 cmdShim(__dirname + '/cli.js', '/usr/bin/command-name').then(() => {
   // shims are created!
 })
