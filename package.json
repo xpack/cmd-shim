@@ -6,7 +6,7 @@
     "test": "tap",
     "snap": "tap",
     "preversion": "echo npm test",
-    "postversion": "npm publish",
+    "postversion": "echo npm publish",
     "postpublish": "git push origin --follow-tags",
     "npm-install": "npm install"
   },
