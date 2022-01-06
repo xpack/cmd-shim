@@ -1,6 +1,6 @@
 {
   "name": "@xpack/cmd-shim",
-  "version": "4.1.0-1",
+  "version": "4.1.0-2",
   "description": "Used in xpm for command line application support",
   "scripts": {
     "test": "tap",
