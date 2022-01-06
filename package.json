@@ -1,18 +1,18 @@
 {
   "name": "@xpack/cmd-shim",
-  "version": "4.1.0-1-pre",
+  "version": "4.1.0-1",
   "description": "Used in xpm for command line application support",
   "scripts": {
     "test": "tap",
     "snap": "tap",
-    "preversion": "npm test",
-    "postversion": "npm publish",
+    "preversion": "echo npm test",
+    "postversion": "echo npm publish",
     "postpublish": "git push origin --follow-tags",
     "npm-install": "npm install"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/npm/cmd-shim.git"
+    "url": "https://github.com/xpack/cmd-shim.git"
   },
   "license": "ISC",
   "dependencies": {
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "rimraf": "~2.2.8",
-    "tap": "^14.10.6"
+    "tap": "^15.1.6"
   },
   "files": [
     "index.js",

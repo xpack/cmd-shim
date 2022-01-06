@@ -11,7 +11,7 @@ On Unix systems, you should use a symbolic link instead.
 ## Installation
 
 ```console
-npm install cmd-shim
+npm install @xpack/cmd-shim
 ```
 
 ## API

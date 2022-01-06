@@ -8,6 +8,7 @@
 // Write a binroot/pkg.bin + ".cmd" file that has this line in it:
 // @<prog> <args...> %dp0%<target> %*
 
+const path = require('path')
 const {promisify} = require('util')
 const fs = require('fs')
 const writeFile = promisify(fs.writeFile)
@@ -56,7 +57,8 @@ const writeShim = (from, to) =>
 
 
 const writeShim_ = (from, to, prog, args, variables) => {
-  let shTarget = relative(dirname(to), from)
+  const isTargetAbsolute = path.isAbsolute(to)
+  let shTarget = isTargetAbsolute ? from : relative(dirname(to), from)
   let target = shTarget.split('/').join('\\')
   let longProg
   let shProg = prog && prog.split('\\').join('/')
@@ -67,18 +69,20 @@ const writeShim_ = (from, to, prog, args, variables) => {
   args = args || ''
   variables = variables || ''
   if (!prog) {
-    prog = `"%dp0%\\${target}"`
-    shProg = `"$basedir/${shTarget}"`
+    prog = isTargetAbsolute ? `"${target}"` : `"%dp0%\\${target}"`
+    shProg = isTargetAbsolute ? `"${shTarget}"` : `"$basedir/${shTarget}"`
     pwshProg = shProg
     args = ''
     target = ''
     shTarget = ''
   } else {
-    longProg = `"%dp0%\\${prog}.exe"`
-    shLongProg = `"$basedir/${prog}"`
-    pwshLongProg = `"$basedir/${prog}$exe"`
-    target = `"%dp0%\\${target}"`
-    shTarget = `"$basedir/${shTarget}"`
+    longProg = isTargetAbsolute ? `"${prog}.exe"` : `"%dp0%\\${prog}.exe"`
+    shLongProg = isTargetAbsolute ? `"${prog}"` : `"$basedir/${prog}"`
+    pwshLongProg = isTargetAbsolute ?  `"${prog}$exe"` : `"$basedir/${prog}$exe"`
+    if (!isTargetAbsolute) {
+      target = `"%dp0%\\${target}"`
+      shTarget = `"$basedir/${shTarget}"`
+    }
   }
 
   // Subroutine trick to fix https://github.com/npm/cmd-shim/issues/10
