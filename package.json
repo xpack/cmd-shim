@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "rimraf": "~2.2.8",
-    "tap": "^14.10.6"
+    "tap": "^15.1.6"
   },
   "files": [
     "index.js",
